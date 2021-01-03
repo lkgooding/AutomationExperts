@@ -40,6 +40,15 @@ createNewTest();  */
 const peopleRouter = require("./routes/people");
 app.use("/people", peopleRouter);  
 
+//Heroku deploy
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+
+
+
 app.post("/", function(req, res){
 
 const personName = req.body.newPerson; 
