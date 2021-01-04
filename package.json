@@ -6,10 +6,11 @@
   "scripts": {
     "client-install": "cd client && npm install",
     "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run client-install && npm run build",
     "start": "node server.js",
     "client": "cd client && npm start",
     "dev": "concurrently -n \"server,client\" -c \"red,green\" \"nodemon server.js\" \"npm run client\"",
-    "heroku-postbuild": "npm run client-install && npm run build"
+    
   },
   "author": "",
   "license": "ISC",
