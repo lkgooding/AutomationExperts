@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === "production") {
 
 //TYING THIS DUE TO GET ERROR IN HEROKU
 app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/build', 'index.js'));
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 app.post("/", function(req, res){
