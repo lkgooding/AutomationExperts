@@ -46,8 +46,11 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
-
+//
 app.post("/", function(req, res){
 
 const personName = req.body.newPerson; 
