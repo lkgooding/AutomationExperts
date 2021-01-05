@@ -50,7 +50,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-//
+app.get('/*', (req, res) => {
+    response.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
 app.post("/", function(req, res){
 
 const personName = req.body.newPerson; 
