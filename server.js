@@ -47,10 +47,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use(express.static('build'));
-app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
+app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
 
-
-app.post("/", function(req, res){
+app.post("/", function(req, res) {
 
 const personName = req.body.newPerson; 
 //This taps into what the user types into the form field. 
