@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const path = require('path');
+const path = require("path");
 const uri = process.env.ATLAS_URI;
 const mongoose = require('mongoose');
 require('dotenv').config(); //environment variables
@@ -40,8 +40,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(express.static('build'));
-app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
 
 app.post("/", function(req, res) {
 
