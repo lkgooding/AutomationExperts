@@ -24,7 +24,9 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }
 
 /*
 const testSchema= new mongoose.Schema({ testData1: String, testData2: String, email: String});
+
 const Test= mongoose.model('Test', testSchema);
+
 async function createNewTest() {const test= new Test({testData1: 'new test', testData2: 'db here', email: 'testsuccess@new.com',});const result = await test.save();console.log(result);
 }
 createNewTest();  */
@@ -37,12 +39,16 @@ app.use("/people", peopleRouter);
 //For Deployment
 
 if (process.env.NODE_ENV === "production") {
-  
-  app.use('*', express.static('client/build'));
+  app.use(express.static("client/build"));
 }
 
-app.use('/static', express.static(path.join(__dirname, 'client/build')));
+app.use(express.static('build'));
 //app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
+
+app.get('*', function (req, res) {
+  const index = path.join(__dirname, 'build', 'index.html');
+  res.sendFile(index);
+});
 
 app.post("/", function(req, res) {
 
@@ -65,3 +71,5 @@ res.redirect("/");
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+
