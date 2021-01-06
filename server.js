@@ -33,14 +33,8 @@ createNewTest();  */
 
 //Routes
 
-
 const peopleRouter = require("./routes/people");
 app.use("/people", peopleRouter);  
-
-app.use(express.static('build'));
-app.get('*', function (req, res) {
-  res.sendFile('index.html');
-});
 
 //For Deployment
 
@@ -48,7 +42,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-
+app.use(express.static('build'));
+app.get('*', function (req, res) {
+  res.sendFile('index.html');
+});
 
 app.post("/", function(req, res) {
 
