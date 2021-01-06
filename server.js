@@ -39,13 +39,15 @@ app.use("/people", peopleRouter);
 //For Deployment
 
 if (process.env.NODE_ENV === "production") {
-  //app.use(express.static("client/build"));
-  app.use('*', express.static("client/build"));
+  app.use(express.static("client/build"));
 }
 
 app.use(express.static('build'));
+
+
 app.get('*', function (req, res) {
-  res.sendFile('index.html');
+  const index = path.join(__dirname, 'build', 'index.html');
+  res.sendFile(index);
 });
 
 app.post("/", function(req, res) {
