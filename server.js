@@ -33,13 +33,14 @@ createNewTest();  */
 
 //Routes
 
+
+const peopleRouter = require("./routes/people");
+app.use("/people", peopleRouter);  
+
 app.use(express.static('build'));
 app.get('*', function (req, res) {
   res.sendFile('index.html');
 });
-
-const peopleRouter = require("./routes/people");
-app.use("/people", peopleRouter);  
 
 //For Deployment
 
