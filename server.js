@@ -6,13 +6,13 @@ const mongoose = require('mongoose');
 require('dotenv').config(); //environment variables
 
 //Creates express server
-const app = express(); 
+const server = express(); 
 const port = process.env.PORT || 5000;
 
 //Middleware:
-app.use(cors());
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: true }))//parses json
+server.use(cors());
+server.use(express.json()); 
+server.use(express.urlencoded({ extended: true }))//parses json
 
 //Set up mongoose connection
 
@@ -34,23 +34,24 @@ createNewTest();  */
 //Routes
 
 const peopleRouter = require("./routes/people");
-app.use("/people", peopleRouter);  
+server.use("/people", peopleRouter);  
 
 //For Deployment
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  server.use(express.static("client/build"));
+  server.use('*', express.static('client/build'));
 }
 
-app.use(express.static('build'));
 
 
-app.get('*', function (req, res) {
+
+/* server.get('*', function (req, res) {
   const index = path.join(__dirname, 'build', 'index.html');
   res.sendFile(index);
-});
+}); */
 
-app.post("/", function(req, res) {
+server.post("/", function(req, res) {
 
 const personName = req.body.newPerson; //This taps into what the user types into the form field. 
 
@@ -68,7 +69,7 @@ res.redirect("/");
 });
 
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
