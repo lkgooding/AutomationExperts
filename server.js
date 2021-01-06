@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
 const uri = process.env.ATLAS_URI;
 const mongoose = require('mongoose');
 require('dotenv').config(); //environment variables
@@ -18,9 +19,6 @@ app.use(express.urlencoded({ extended: true }))//parses json
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true } 
 ).then(() => console.log('Connected to MongoDB...'))
 .catch((err) => console.error("Couldn't connect MongoDB....", err));
-
-
-
 
 //test schema- Comment this out again when starting with a new DB to test. 
 
@@ -49,8 +47,7 @@ app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
 
 app.post("/", function(req, res) {
 
-const personName = req.body.newPerson; 
-//This taps into what the user types into the form field. 
+const personName = req.body.newPerson; //This taps into what the user types into the form field. 
 
 const person = new personModel({
   	firstName: personFirstname,
