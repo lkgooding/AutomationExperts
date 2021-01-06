@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-
-
+const uri = process.env.ATLAS_URI;
+const mongoose = require('mongoose');
 require('dotenv').config(); //environment variables
 
 //Creates express server
@@ -15,8 +15,6 @@ app.use(express.urlencoded({ extended: true }))//parses json
 
 //Set up mongoose connection
 
-const mongoose = require('mongoose');
-const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true } 
 ).then(() => console.log('Connected to MongoDB...'))
 .catch((err) => console.error("Couldn't connect MongoDB....", err));
