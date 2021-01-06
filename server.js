@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const path = require("path");
 
 require('dotenv').config(); //environment variables
 
@@ -44,6 +44,10 @@ app.use("/people", peopleRouter);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("../client/build"));
 }
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.post("/", function(req, res){
 
