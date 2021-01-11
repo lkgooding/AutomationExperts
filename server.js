@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const uri = process.env.ATLAS_URI;
-const mongoose = require('mongoose');
+
 require('dotenv').config(); //environment variables
 
 //Creates express server
@@ -16,6 +15,8 @@ app.use(express.urlencoded({ extended: true }))//parses json
 
 //Set up mongoose connection
 
+const mongoose = require('mongoose');
+const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true } 
 ).then(() => console.log('Connected to MongoDB...'))
 .catch((err) => console.error("Couldn't connect MongoDB....", err));
@@ -33,18 +34,13 @@ createNewTest();  */
 
 //Routes
 
-const peopleRouter = require("./routes/people");
-app.use("/people", peopleRouter);  
-
 //For Deployment
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+  app.use(express.static('client/build'));
+  app.use('*', express.static('client/build'));    }
 
-app.use('/static', express.static(path.join(__dirname, 'client/build')));
-
-
+const peopleRouter = require("./routes/people");
 app.post("/", function(req, res) {
 
 const personName = req.body.newPerson; //This taps into what the user types into the form field. 
@@ -61,6 +57,10 @@ person.save();
 res.redirect("/");
 
 });
+
+app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname+ "/client/build/index.html"));
+}); 
 
 
 app.listen(port, () => {
