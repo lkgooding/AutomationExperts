@@ -4,8 +4,7 @@
   "description": "An app promoting Auomation Experts",
   "main": "server.js",
   "scripts": {
-    "client-install": "cd client && npm install",
-    "build": "cd client && npm run build",
+    
     "start": "node server.js",
     "postinstall": "npm run build",
     "client": "cd client && npm start",
