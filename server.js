@@ -40,8 +40,7 @@ createNewTest();  */
   app.use('*', express.static('client/build'));    
 }
 
- const peopleRouter = require("./routes/people"); 
- //app.use("/people", peopleRouter); This was used in development, pre-production/deploy 
+ const peopleRouter = require("./routes/people"); app.use("/people", peopleRouter);  
  app.post("/", function(req, res){
 
 const personName = req.body.newPerson; 
