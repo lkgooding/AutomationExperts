@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from "axios";
-import Modal from "./Modal"; 
+
 
 
 const Formiked = (id) => {
@@ -32,7 +32,7 @@ const validationSchema = Yup.object({
   });
 
 const submitForm = (e) => {
-  //e.preventDefault();
+  
   axios.post("/people/add", person).then(() => {
 if (person.firstName && person.surName && person.email && person.query) {
       const newPerson = { ...person, id };
