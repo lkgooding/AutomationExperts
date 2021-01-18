@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from "axios";
-import Modal from ""./Modal"; 
+import Modal from "./Modal"; 
 
 
 const Formiked = (id) => {
