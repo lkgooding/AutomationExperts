@@ -41,7 +41,7 @@ createNewTest();  */
 }
 
  const peopleRouter = require("./routes/people"); 
- app.use("/people", peopleRouter);  
+ //app.use("/people", peopleRouter);  
  app.post("/", function(req, res){
 
 const personName = req.body.newPerson; 
