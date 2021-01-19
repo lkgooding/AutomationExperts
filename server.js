@@ -61,7 +61,7 @@ res.redirect("/");
 
 //For use in production/deployment only
 
- app.get("*", (req, res) => {
+ app.get("/*", (req, res) => {
       res.sendFile(path.resolve(__dirname+ "/client/build/index.html"));
       //You need to require path to use this- see above environment variables. 
 }); 
