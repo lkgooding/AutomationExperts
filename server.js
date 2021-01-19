@@ -32,14 +32,16 @@ createNewTest();  */
 
 //Routes
 
-//For Deployment
+//For Deployment only 
 
  if (process.env.NODE_ENV === "production") {
   app.use(express.static('client/build'));
   app.use('*', express.static('client/build')); } 
 
+//For Development- used along with deployment once in production. 
+
 const peopleRouter = require("./routes/people");
-app.use("/people", peopleRouter);  //THIS IS NECESSARY IN DEV MODE to post from frontend.
+app.use("/people", peopleRouter);
 app.post("/", function(req, res) { 
 
 const personName = req.body.newPerson; //This taps into what the user types into the form field. 
@@ -57,8 +59,11 @@ res.redirect("/");
 
 });
 
+//For use in production/deployment only
+
  app.get("*", (req, res) => {
       res.sendFile(path.resolve(__dirname+ "/client/build/index.html"));
+      //You need to require path to use this- see above environment variables. 
 }); 
 
 
