@@ -36,10 +36,10 @@ createNewTest();  */
 
  if (process.env.NODE_ENV === "production") {
   app.use(express.static('client/build'));
-  app.use('*', express.static('client/build'));    } */
+  app.use('*', express.static('client/build')); } 
 
 const peopleRouter = require("./routes/people");
-//app.use("/people", peopleRouter);  //THIS IS NECESSARY IN DEV MODE to post from frontend.
+app.use("/people", peopleRouter);  //THIS IS NECESSARY IN DEV MODE to post from frontend.
 app.post("/", function(req, res) { 
 
 const personName = req.body.newPerson; //This taps into what the user types into the form field. 
