@@ -40,7 +40,8 @@ createNewTest();  */
   app.use('*', express.static('client/build'));    
 }
 
- const peopleRouter = require("./routes/people"); app.use("/people", peopleRouter);  
+ const peopleRouter = require("./routes/people");
+ //app.use("/people", peopleRouter); This not in the file that worked on Jan 11 before I broke things so don't think it's needed. 
  app.post("/", function(req, res){
 
 const personName = req.body.newPerson; 
