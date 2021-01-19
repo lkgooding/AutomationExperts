@@ -43,7 +43,7 @@ if (person.firstName && person.surName && person.email && person.query) {
 };
 
 //Change handler
-  
+
   const handleChange = (e) => {
     const {name, value} = e.target;
     setPerson({ ...person, [name]: value });
@@ -109,7 +109,7 @@ if (person.firstName && person.surName && person.email && person.query) {
     </Formik>
    );
   };
-  
- 
+
+
 
 export default Formiked;
